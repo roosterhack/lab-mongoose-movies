@@ -34,6 +34,20 @@ router.post("/celebrities", (req, res) => {
     });
 });
 
+//Delete a celebrity
+router.post("/celebrities/:id/delete", (req, res, next) => {
+  const _id = req.params.id;
+  Celebrity.findByIdAndRemove({ _id })
+    .then(() => {
+      console.log("deleted celebrity");
+      res.redirect("/celebrities");
+    })
+    .catch(err => {
+      next();
+      console.log(err);
+    });
+});
+
 //list celebrities details page
 router.get("/celebrities/:id", (req, res, next) => {
   const _id = req.params.id;
