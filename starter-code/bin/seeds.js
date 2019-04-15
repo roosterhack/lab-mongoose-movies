@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const Celebrity = require("../models/celebrity");
 
-mongoose.connect("mongodb://localhost/mongoose-movies");
+mongoose.connect("mongodb://localhost/starter-code");
 
 Celebrity.collection.drop();
 
