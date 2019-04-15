@@ -14,8 +14,8 @@ router.get("/celebrities", (req, res) => {
 });
 
 //list celebrities details page
-router.get("/celebrities/:celeId", (req, res) => {
-  const _id = req.params.celeId;
+router.get("/celebrities/:id", (req, res, next) => {
+  const _id = req.params.id;
   Celebrity.findOne({ _id })
     .then(data => {
       res.render("celebrities/show", { data });
