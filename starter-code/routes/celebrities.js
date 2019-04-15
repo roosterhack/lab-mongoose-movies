@@ -13,6 +13,27 @@ router.get("/celebrities", (req, res) => {
     });
 });
 
+//Celebrities page
+router.get("/celebrities/new", (req, res) => {
+  res.render("celebrities/new");
+});
+
+//Add a new celebrity
+router.post("/celebrities", (req, res) => {
+  const { name, occupation, catchPhrase } = req.body;
+  Celebrity.create({
+    name,
+    occupation,
+    catchPhrase
+  })
+    .then(() => {
+      res.redirect("/celebrities");
+    })
+    .catch(err => {
+      console.log(err);
+    });
+});
+
 //list celebrities details page
 router.get("/celebrities/:id", (req, res, next) => {
   const _id = req.params.id;
