@@ -48,6 +48,31 @@ router.post("/celebrities/:id/delete", (req, res, next) => {
     });
 });
 
+//edit a celebrity
+router.all("/celebrities/:id/edit", (req, res, next) => {
+  const _id = req.params.id;
+  Celebrity.findOne({ _id })
+    .then(data => {
+      res.render("celebrities/edit", { data });
+    })
+    .catch(err => {
+      console.log(err);
+    });
+});
+
+router.post("/celebrities/:id", (req, res, next) => {
+  const _id = req.params.id;
+  const { name, occupation, catchPhrase } = req.body;
+  Celebrity.findOneAndUpdate({ _id }, { name, occupation, catchPhrase }, { new: true })
+    .then(updatedData => {
+      console.log(`updated ${updatedData.name}`);
+      res.redirect("/celebrities");
+    })
+    .catch(err => {
+      console.log(err);
+    });
+});
+
 //list celebrities details page
 router.get("/celebrities/:id", (req, res, next) => {
   const _id = req.params.id;
