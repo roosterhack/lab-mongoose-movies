@@ -1,9 +1,13 @@
 const mongoose = require("mongoose");
 const Celebrity = require("../models/celebrity");
+const Movie = require("../models/movie");
 
 mongoose.connect("mongodb://localhost/starter-code");
 
 Celebrity.collection.drop();
+Movie.collection.drop();
+
+//Celebrity collection
 
 const celebrities = [
   {
@@ -24,6 +28,34 @@ const celebrities = [
 ];
 
 Celebrity.create(celebrities)
+  .then(() => {
+    console.log("successfully seeded database");
+  })
+  .catch(err => {
+    console.log(err);
+  });
+
+//Movie collection
+
+const movies = [
+  {
+    title: "My first movie",
+    genre: "Horror",
+    plot: "I know what you did last summer kind of movie"
+  },
+  {
+    title: "Twins",
+    genre: "Horror",
+    plot: "Brothers from another mother"
+  },
+  {
+    title: "Terminator",
+    genre: "Action",
+    plot: "Get down"
+  }
+];
+
+Movie.create(movies)
   .then(() => {
     console.log("successfully seeded database");
   })
