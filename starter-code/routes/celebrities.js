@@ -44,8 +44,8 @@ router.post("/celebrities/:id/delete", (req, res, next) => {
       res.redirect("/celebrities");
     })
     .catch(err => {
-      next();
       console.log(err);
+      next();
     });
 });
 
@@ -71,6 +71,7 @@ router.post("/celebrities/:id", (req, res, next) => {
     })
     .catch(err => {
       console.log(err);
+      next();
     });
 });
 
